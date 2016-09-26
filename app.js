@@ -91,3 +91,48 @@ function seaTacAirportResults (){
   seaTacAirportEl.appendChild(liEl);
 }
 seaTacAirportResults();
+
+// Seattle Center Location
+var seattleCenter = {
+  minCustomersPerHour: 11,
+  maxCustomersPerHour: 38,
+  avgCookiesPerCustomer: 3.7,
+  location: '1st and Pike',
+  hoursOpen: 15,
+  customersPerHour: [],
+  cookiesSoldPerHour: [],
+  totalDailyCookiesSold: 0,
+
+  customersPerHourReported: function() {
+    for (var i = 0; i < hoursOpenPerDay.length; i++) {
+      var randomNumber = Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
+      this.customersPerHour.push(randomNumber);
+    }
+  },
+  totalCookiesSoldPerHour: function(){
+    for (var i = 0; i < hoursOpenPerDay.length; i++) {
+      var cookiesSoldCalc = Math.round(this.customersPerHour[i] * this.avgCookiesPerCustomer);
+      this.cookiesSoldPerHour.push(cookiesSoldCalc);
+      this.totalDailyCookiesSold += cookiesSoldCalc;
+    }
+  },
+  calculate: function (){
+    this.customersPerHourReported();
+    this.totalCookiesSoldPerHour();
+  },
+};
+seattleCenter.calculate();
+
+function seattleCenterResults (){
+  var seattleCenterEl = document.getElementById('seattlecenter');
+  for (var i = 0; i < seattleCenter.customersPerHour.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = hoursOpenPerDay[i] + ': ' + seattleCenter.cookiesSoldPerHour[i] + ' cookies';
+    seattleCenterEl.appendChild(liEl);
+  }
+  seattleCenterEl = document.getElementById('seattlecenter');
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + seattleCenter.totalDailyCookiesSold + ' cookies';
+  seattleCenterEl.appendChild(liEl);
+}
+seattleCenterResults();
