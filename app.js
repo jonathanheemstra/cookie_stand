@@ -137,7 +137,7 @@ function seattleCenterResults (){
 }
 seattleCenterResults();
 
-// Seattle Center Location
+// Capitol Hill Location
 var capitolHill = {
   minCustomersPerHour: 20,
   maxCustomersPerHour: 38,
@@ -181,3 +181,48 @@ function capitolHillResults (){
   capitolHillEl.appendChild(liEl);
 }
 capitolHillResults();
+
+// Alki Beach Location
+var alkiBeach = {
+  minCustomersPerHour: 2,
+  maxCustomersPerHour: 16,
+  avgCookiesPerCustomer: 4.6,
+  location: '1st and Pike',
+  hoursOpen: 15,
+  customersPerHour: [],
+  cookiesSoldPerHour: [],
+  totalDailyCookiesSold: 0,
+
+  customersPerHourReported: function() {
+    for (var i = 0; i < hoursOpenPerDay.length; i++) {
+      var randomNumber = Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
+      this.customersPerHour.push(randomNumber);
+    }
+  },
+  totalCookiesSoldPerHour: function(){
+    for (var i = 0; i < hoursOpenPerDay.length; i++) {
+      var cookiesSoldCalc = Math.round(this.customersPerHour[i] * this.avgCookiesPerCustomer);
+      this.cookiesSoldPerHour.push(cookiesSoldCalc);
+      this.totalDailyCookiesSold += cookiesSoldCalc;
+    }
+  },
+  calculate: function (){
+    this.customersPerHourReported();
+    this.totalCookiesSoldPerHour();
+  },
+};
+alkiBeach.calculate();
+
+function alkiBeachResults (){
+  var alkiBeachEl = document.getElementById('alki');
+  for (var i = 0; i < alkiBeach.customersPerHour.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = hoursOpenPerDay[i] + ': ' + alkiBeach.cookiesSoldPerHour[i] + ' cookies';
+    alkiBeachEl.appendChild(liEl);
+  }
+  alkiBeachEl = document.getElementById('alki');
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + alkiBeach.totalDailyCookiesSold + ' cookies';
+  alkiBeachEl.appendChild(liEl);
+}
+alkiBeachResults();
