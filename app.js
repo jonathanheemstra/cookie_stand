@@ -28,6 +28,11 @@ var firstAndPike = {
     }
   },
 };
-
 firstAndPike.customersPerHourReported();
 firstAndPike.totalCookiesSoldPerHour();
+var firstAndPikeEl = document.getElementById('firstandpike');
+for (var i = 0; i < firstAndPike.customersPerHour.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = hoursOpenPerDay[i] + ': ' + firstAndPike.cookiesSoldPerHour[i] + ' cookies';
+  firstAndPikeEl.appendChild(liEl);
+}
