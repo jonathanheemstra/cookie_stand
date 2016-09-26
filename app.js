@@ -1,21 +1,33 @@
 'use strict';
+
 var hoursOpenPerDay = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var firstAndPike = {
   minCustomersPerHour: 23,
   maxCustomersPerHour: 65,
-  avgCookiesPerHour: 6.3,
+  avgCookiesPerCustomer: 6.3,
   location: '1st and Pike',
   hoursOpen: 15,
-  findCustomersPerHour: function() {
-    return Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
-  },
+  customersPerHour: [],
+  cookiesSoldPerHour: [],
+  totalDailyCookiesSold: 0,
+
   customersPerHourReported: function() {
     for (var i = 0; i < hoursOpenPerDay.length; i++) {
-      console.log(this.findCustomersPerHour());
+      var randomNumber = Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
+      this.customersPerHour.push(randomNumber);
+      console.log('Customers per hour at ' + this.location + ' = ' + hoursOpenPerDay[i] + ': ' + randomNumber);
+    }
+  },
+  totalCookiesSoldPerHour: function() {
+    for (var i = 0; i < hoursOpenPerDay.length; i++) {
+      var cookiesSoldCalc = Math.round(this.customersPerHour[i] * this.avgCookiesPerCustomer);
+      this.cookiesSoldPerHour.push(cookiesSoldCalc);
+      this.totalDailyCookiesSold += cookiesSoldCalc;
+      console.log('Cookies per hour at ' + this.location + ' = ' + hoursOpenPerDay[i] + ': ' + cookiesSoldCalc);
     }
   },
 };
 
-//random number of customers per hour generated for 1st and Pike
-console.log('1st and Pike random number of customers per hour = ' + firstAndPike.findCustomersPerHour());
+firstAndPike.customersPerHourReported();
+firstAndPike.totalCookiesSoldPerHour();
