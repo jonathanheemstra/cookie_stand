@@ -1,0 +1,37 @@
+* {
+  font-family: 'Walter Turncoat', 'Arial', 'Georgia', serif, sans-serif;;
+}
+body {
+  max-width: 90%;
+  margin: 0 auto;
+}
+div {
+  float: left;
+  width: 26%;
+  margin: 2%;
+  padding: 1%;
+  border: 2px solid black;
+}
+div h2 {
+  text-align: center;
+}
+header {
+  text-align: center;
+}
+h1 {
+  font-size: 50px;
+  margin-bottom: 0;
+}
+h4 {
+  font-style: italic;
+  font-size: 25px;
+  color: grey;
+  margin-top: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+li:last-of-type {
+  border-top: 1px solid black;
+}
