@@ -1,6 +1,6 @@
 'use strict';
 
-var hoursOpenPerDay = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var hoursOpenPerDay = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var businesses = [];
 
 //Constructor
@@ -22,6 +22,15 @@ function Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer,
       this.cookiesSoldPerHour.push(Math.ceil(this.customersPerHour[i] * this.avgCookiesPerCustomer));
       this.totalDailyCookiesSold += this.cookiesSoldPerHour[i];
     }
+  };
+  this.render = function () {
+    var tableDataDisplay = document.getElementById('businesses_reporting_js');
+    //Create TH row - includes headers for each hour
+
+    //Create TR for each Business Location - includes name of Location and hourly data
+
+    //Create TD for each Business Location Data
+
   };
   // this.render = function () {
   //   var firstAndPikeEl = document.getElementById('firstandpike');
