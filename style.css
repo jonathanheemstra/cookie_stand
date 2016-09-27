@@ -7,10 +7,13 @@ body {
 }
 div {
   float: left;
-  max-width: 29%;
+  width: 26%;
   margin: 2%;
-  padding: 2%;
+  padding: 1%;
   border: 2px solid black;
+}
+div h2 {
+  text-align: center;
 }
 header {
   text-align: center;
