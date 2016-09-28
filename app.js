@@ -57,15 +57,17 @@ new Stores(20, 38, 2.3, 'Capitol Hill');
 new Stores(2, 16, 4.6, 'Alki Beach');
 
 //Render All Businesses Objects into table
-// function renderBusinesses() {
-//   tableDataDisplay.innerHTML = '';
-//   for (var i = 0; i < businesses.length; i++) {
-//     businesses[i].calcCustomersPerHour();
-//     businesses[i].calcCookiesSoldPerHour();
-//     businesses[i].renderTableBody();
-//     tableDataDisplay.appendChild(businesses[i].renderPage());
-//   }
-// }
+function renderBusinesses() {
+  tableDataDisplay.innerHTML = '';
+  renderTableHeader();
+  for (var i = 0; i < businesses.length; i++) {
+    businesses[i].calcCustomersPerHour();
+    businesses[i].calcCookiesSoldPerHour();
+    businesses[i].renderTableBody();
+  }
+  totalSalesCalc();
+  renderTableFooter();
+}
 
 //Event listener function to run after submit button is clicked
 function addLocations (event) {
@@ -85,25 +87,23 @@ function addLocations (event) {
   event.target.max_customers.value = null; //Remove text from the form after submission
   event.target.avg_cookies.value = null; //Remove text from the form after submission
 
-  // businesses.push(this); //Push newly constructed object to Businesses array
-
-  // renderPage();
+  renderBusinesses(storeLocation);
 }
 
 
 //Render the header, construct objects, run total sales calc, render table footer
-function renderPage() {
-  renderTableHeader();
-
-  for (var x = 0; x < businesses.length; x++) {
-    businesses[x].calcCustomersPerHour();
-    businesses[x].calcCookiesSoldPerHour();
-    businesses[x].renderTableBody();
-  }
-
-  totalSalesCalc();
-  renderTableFooter();
-}
+// function renderPage() {
+//   renderTableHeader();
+//
+//   for (var x = 0; x < businesses.length; x++) {
+//     businesses[x].calcCustomersPerHour();
+//     businesses[x].calcCookiesSoldPerHour();
+//     businesses[x].renderTableBody();
+//   }
+//
+//   totalSalesCalc();
+//   renderTableFooter();
+// }
 
 //Render the table header
 function renderTableHeader() {
@@ -159,4 +159,5 @@ function totalSalesCalc() {
 newLocations.addEventListener('submit', addLocations);
 
 //Execute page render action
-renderPage();
+// renderPage();
+renderBusinesses();
