@@ -8,35 +8,6 @@ var totalAllLocationsSales = 0;
 var newLocations = document.getElementById('business_info');
 var tableDataDisplay = document.getElementById('businesses_reporting_js');
 
-//Render All Businesses Objects into table
-function renderBusinesses() {
-  tableDataDisplay.innerHTML = '';
-  for (var i = 0; i < businesses.length; i++) {
-    tableDataDisplay.appendChild(businesses[i].renderPage());
-  }
-}
-
-//Event listener function to run after submit button is clicked
-function addLocations (event) {
-  console.log('It\'s WORKING!!!');
-
-  event.preventDefault(); //Prevent the page from reloading after form submission
-
-  var location = event.target.location.value; //Pull text from form in order to build object
-  var minCustomersPerHour = parseInt(event.target.min_customers.value); //Pull text from form in order to build object
-  var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
-  var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
-
-  var storeLocation = new Stores (minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
-
-  event.target.location.value = null; //Remove text from the form after submission
-  event.target.min_customers.value = null; //Remove text from the form after submission
-  event.target.max_customers.value = null; //Remove text from the form after submission
-  event.target.avg_cookies.value = null; //Remove text from the form after submission
-
-  businesses.push(this);
-}
-
 //Constructor Function
 var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location) {
   this.minCustomersPerHour = minCustomersPerHour;
@@ -46,7 +17,7 @@ var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCus
   this.customersPerHour = [];
   this.cookiesSoldPerHour = [];
   this.totalDailyCookiesSold = 0;
-  businesses.push(this);
+  businesses.push(this); //Push newly constructed object to Businesses array
 };
 //Method to generate random number of customers per hour based on min/max customers
 Stores.prototype.calcCustomersPerHour = function() {
@@ -78,17 +49,54 @@ Stores.prototype.renderTableBody = function () {
   tableDataDisplay.appendChild(trEl); //Add row for each business location to reporting table
 };
 
+//Construct new objects for each Business
+new Stores(23, 65, 6.3, '1st and Pike');
+new Stores(3, 24, 1.2, 'SeaTac Airport');
+new Stores(11, 38, 3.7, 'Seattle Center');
+new Stores(20, 38, 2.3, 'Capitol Hill');
+new Stores(2, 16, 4.6, 'Alki Beach');
+
+//Render All Businesses Objects into table
+// function renderBusinesses() {
+//   tableDataDisplay.innerHTML = '';
+//   for (var i = 0; i < businesses.length; i++) {
+//     businesses[i].calcCustomersPerHour();
+//     businesses[i].calcCookiesSoldPerHour();
+//     businesses[i].renderTableBody();
+//     tableDataDisplay.appendChild(businesses[i].renderPage());
+//   }
+// }
+
+//Event listener function to run after submit button is clicked
+function addLocations (event) {
+  console.log('It\'s WORKING!!!');
+
+  event.preventDefault(); //Prevent the page from reloading after form submission
+
+  var location = event.target.location.value; //Pull text from form in order to build object
+  var minCustomersPerHour = parseInt(event.target.min_customers.value); //Pull text from form in order to build object
+  var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
+  var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
+
+  var storeLocation = new Stores (minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+
+  event.target.location.value = null; //Remove text from the form after submission
+  event.target.min_customers.value = null; //Remove text from the form after submission
+  event.target.max_customers.value = null; //Remove text from the form after submission
+  event.target.avg_cookies.value = null; //Remove text from the form after submission
+
+  businesses.push(this); //Push newly constructed object to Businesses array
+  renderPage();
+}
+
+
 //Render the header, construct objects, run total sales calc, render table footer
 function renderPage() {
   renderTableHeader();
 
-  new Stores(23, 65, 6.3, '1st and Pike');
-  new Stores(3, 24, 1.2, 'SeaTac Airport');
-  new Stores(11, 38, 3.7, 'Seattle Center');
-  new Stores(20, 38, 2.3, 'Capitol Hill');
-  new Stores(2, 16, 4.6, 'Alki Beach');
-
   for (var x = 0; x < businesses.length; x++) {
+    businesses[x].calcCustomersPerHour();
+    businesses[x].calcCookiesSoldPerHour();
     businesses[x].renderTableBody();
   }
 
