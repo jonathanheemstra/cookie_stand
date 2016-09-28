@@ -78,15 +78,16 @@ function addLocations (event) {
   var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
   var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
 
-  var storeLocation = new Stores (minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  var storeLocation = new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
 
   event.target.location.value = null; //Remove text from the form after submission
   event.target.min_customers.value = null; //Remove text from the form after submission
   event.target.max_customers.value = null; //Remove text from the form after submission
   event.target.avg_cookies.value = null; //Remove text from the form after submission
 
-  businesses.push(this); //Push newly constructed object to Businesses array
-  renderPage();
+  // businesses.push(this); //Push newly constructed object to Businesses array
+
+  // renderPage();
 }
 
 
