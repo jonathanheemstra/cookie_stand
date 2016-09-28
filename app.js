@@ -2,8 +2,8 @@
 
 var hoursOpenPerDay = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var businesses = [];
-var hourlyCookieSales = [];
-var totalAllLocationsSales = [];
+var salesByHour = [];
+var totalAllLocationsSales = 0;
 
 //Constructor
 function Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location) {
@@ -67,10 +67,41 @@ function renderTableHeader() {
   trEl.appendChild(thEl); //Add totals to the table header row as last column
   tableDataDisplay.appendChild(trEl); //Add table header row to daily data table
 };
+function renderTableFooter() {
+  var tableDataDisplay = document.getElementById('businesses_reporting_js');
+  var trEl = document.createElement('tr'); //Create a row for each business location
+  var tdEl = document.createElement('td'); //Create a column for the business location name
+  tdEl.textContent = 'Totals'; //Add business location name to column
+  trEl.appendChild(tdEl); //Add business location name column to row for current business location[i]
+  for (var a = 0; a <= hoursOpenPerDay.length; a++) { //Create a column for each hour of the day loop
+    tdEl = document.createElement('td'); //Create a column for earch hour of the day
+    tdEl.textContent = salesByHour[a]; //Add hourly sales of cookies per business[i] to hourly column
+    trEl.appendChild(tdEl); //Add hourly sales of cookies per business to column for current business location[i] row
+  }
+  tdEl.textContent = totalAllLocationsSales; //Create a column for the daily total cookies sold
+  trEl.appendChild(tdEl); //Add daily cookies total sold to business location row
+  tableDataDisplay.appendChild(trEl); //Add row for each business location to reporting table
+};
 renderTableHeader();
+
 
 new Stores(23, 65, 6.3, '1st and Pike');
 new Stores(3, 24, 1.2, 'SeaTac Airport');
 new Stores(11, 38, 3.7, 'Seattle Center');
 new Stores(20, 38, 2.3, 'Capitol Hill');
 new Stores(2, 16, 4.6, 'Alki Beach');
+
+function totalSalesCalc() {
+  for (var i = 0; i < hoursOpenPerDay.length; i++) {
+    var hourlyCookieSales = 0;
+    for (var z = 0; z < businesses.length; z++) {
+      hourlyCookieSales += businesses[z].cookiesSoldPerHour[i];
+    }
+    salesByHour.push(hourlyCookieSales);
+  }
+  for (var y = 0; y < businesses.length; y++) {
+    totalAllLocationsSales += businesses[y].totalDailyCookiesSold;
+  }
+}
+totalSalesCalc();
+renderTableFooter();
