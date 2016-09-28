@@ -48,3 +48,49 @@ table tr td:first-child {
 main {
   width: 100%;
 }
+section {
+  margin: 3% 0%;
+}
+form div {
+  width: auto;
+  border: none;
+  margin: 0;
+  padding: 2%;
+}
+fieldset {
+  margin: 0;
+}
+legend {
+  font-size: 25px;
+}
+button {
+    border: 1px;
+    text-align: center;
+    margin-right: 20px;
+    float: left;
+    font-weight: bold;
+    width: 150px;
+    font-size: 25px;
+}
+.button {
+    border-radius: 5px;
+    background-color: #2C3E50;
+    color: white;
+    border-bottom: 5px solid #19242E;
+    border-right: 3px solid #19242E;
+}
+.button:hover {
+    background: #486582;
+    border-bottom: 3px solid #384F66;
+    border-right: 2px solid #384F66;
+    margin-top: 2px;
+    margin-right: 21px;
+}
+
+.button:active {
+    background: #486582;
+    border-bottom: 0px;
+    border-right: 0px;
+    margin-top: 5px;
+    margin-right: 23px;
+}
