@@ -5,7 +5,16 @@ var hoursOpenPerDay = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00
 var businesses = [];
 var salesByHour = [];
 var totalAllLocationsSales = 0;
+var newLocations = document.getElementById('business_info');
 
+//Create Event Listener for clicks on submit button on newLocations form
+newLocations.addEventListener('submit', addLocations);
+
+//Event listener function to run after submit button is clicked
+function addLocations (event) {
+  console.log('It\'s WORKING!!!');
+  event.preventDefault();
+}
 //Constructor Function
 function Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location) {
   this.minCustomersPerHour = minCustomersPerHour;
