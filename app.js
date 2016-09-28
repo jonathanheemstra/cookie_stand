@@ -67,22 +67,25 @@ function renderTableHeader() {
   thEl.textContent = 'Daily Location Totals'; //Add totals to the table header row as last column
   trEl.appendChild(thEl); //Add totals to the table header row as last column
   tableDataDisplay.appendChild(trEl); //Add table header row to daily data table
-};
+}
+
 function renderTableFooter() {
   var tableDataDisplay = document.getElementById('businesses_reporting_js');
   var trEl = document.createElement('tr'); //Create a row for each business location
   var tdEl = document.createElement('td'); //Create a column for the business location name
   tdEl.textContent = 'Totals'; //Add business location name to column
   trEl.appendChild(tdEl); //Add business location name column to row for current business location[i]
-  for (var a = 0; a <= hoursOpenPerDay.length; a++) { //Create a column for each hour of the day loop
+  for (var a = 0; a < hoursOpenPerDay.length; a++) { //Create a column for each hour of the day loop
     tdEl = document.createElement('td'); //Create a column for earch hour of the day
     tdEl.textContent = salesByHour[a]; //Add hourly sales of cookies per business[i] to hourly column
     trEl.appendChild(tdEl); //Add hourly sales of cookies per business to column for current business location[i] row
   }
+  tdEl = document.createElement('td');
   tdEl.textContent = totalAllLocationsSales; //Create a column for the daily total cookies sold
   trEl.appendChild(tdEl); //Add daily cookies total sold to business location row
   tableDataDisplay.appendChild(trEl); //Add row for each business location to reporting table
-};
+}
+
 function totalSalesCalc() {
   for (var i = 0; i < hoursOpenPerDay.length; i++) {
     var hourlyCookieSales = 0;
@@ -95,6 +98,7 @@ function totalSalesCalc() {
     totalAllLocationsSales += businesses[y].totalDailyCookiesSold;
   }
 }
+
 renderTableHeader();
 
 new Stores(23, 65, 6.3, '1st and Pike');
