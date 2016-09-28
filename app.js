@@ -100,7 +100,7 @@ function addLocations (event) {
 
 //Render the table header
 function renderTableHeader() {
-  var tableDataDisplay = document.getElementById('businesses_reporting_js');
+  var theadEl = document.createElement('thead'); //Create a table head
   var trEl = document.createElement('tr'); //Create a row for each business location
   var thEl = document.createElement('th'); //Create a table header column to hold hours of the day
   thEl.textContent = ''; //Create a blank space as the first column in the tabel header row
@@ -113,12 +113,13 @@ function renderTableHeader() {
   thEl = document.createElement('th'); //Create a table header row for daily totals
   thEl.textContent = 'Daily Location Totals'; //Add totals to the table header row as last column
   trEl.appendChild(thEl); //Add totals to the table header row as last column
-  tableDataDisplay.appendChild(trEl); //Add table header row to daily data table
+  theadEl.appendChild(trEl); //Add row to table head
+  tableDataDisplay.appendChild(theadEl); //Add table header row to daily data table
 }
 
 //Render the table footer
 function renderTableFooter() {
-  var tableDataDisplay = document.getElementById('businesses_reporting_js');
+  var tfootEl = document.createElement('tfoot'); //Create a table footer
   var trEl = document.createElement('tr'); //Create a row for the totals
   var tdEl = document.createElement('td'); //Create a column for the totals
   tdEl.textContent = 'Totals'; //Add totals text to column
@@ -131,7 +132,8 @@ function renderTableFooter() {
   tdEl = document.createElement('td');
   tdEl.textContent = totalAllLocationsSales; //Create a column for the daily total cookies sold for all business locations
   trEl.appendChild(tdEl); //Add daily cookies total sold for all business locations row
-  tableDataDisplay.appendChild(trEl); //Add row for totals
+  tfootEl.appendChild(trEl); //Add row to table footer
+  tableDataDisplay.appendChild(tfootEl); //Add row for totals
 }
 
 //Calc the total sales
