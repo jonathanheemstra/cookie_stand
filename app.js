@@ -1,12 +1,16 @@
 'use strict';
 
+/************************
+Declare Data
+************************/
+
 //Declare variables required for page construction
 var hoursOpenPerDay = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var businesses = [];
 var salesByHour = [];
 var totalAllLocationsSales = 0;
-var newLocations = document.getElementById('business_info');
-var tableDataDisplay = document.getElementById('businesses_reporting_js');
+var newLocations = document.getElementById('business_info'); //Accesses the input form
+var tableDataDisplay = document.getElementById('businesses_reporting_js'); //Accesses the data table
 
 //Constructor Function
 var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location) {
@@ -16,7 +20,9 @@ var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCus
   this.location = location;
   this.customersPerHour = [];
   this.cookiesSoldPerHour = [];
-  this.totalDailyCookiesSold = 0;
+  this.totalDailyCookiesSold = 0; //Set total daily cookies to zero
+  this.calcCustomersPerHour(); //Run the method to calculate the customers per hour for the object
+  this.calcCookiesSoldPerHour(); //Run the method to calculate the cookies sold per hour for the object
   businesses.push(this); //Push newly constructed object to Businesses array
 };
 //Method to generate random number of customers per hour based on min/max customers
@@ -56,23 +62,25 @@ new Stores(11, 38, 3.7, 'Seattle Center');
 new Stores(20, 38, 2.3, 'Capitol Hill');
 new Stores(2, 16, 4.6, 'Alki Beach');
 
+/************************
+Define Actions
+************************/
+
 //Render All Businesses Objects into table
 function renderBusinesses() {
-  tableDataDisplay.innerHTML = '';
-  renderTableHeader();
-  for (var i = 0; i < businesses.length; i++) {
-    businesses[i].calcCustomersPerHour();
-    businesses[i].calcCookiesSoldPerHour();
-    businesses[i].renderTableBody();
+  tableDataDisplay.innerHTML = ''; //Clear the data table (tableDataDisplay)
+  salesByHour = []; //Clear the salesByHour array
+  totalAllLocationsSales = 0; //Clear the total sales across all locations
+  renderTableHeader(); //reRender the header for the table
+  for (var i = 0; i < businesses.length; i++) { //Loop through the businesses array to render the table
+    businesses[i].renderTableBody(); //reRender the table body for the current business[i]
   }
-  totalSalesCalc();
-  renderTableFooter();
+  totalSalesCalc(); //Calculate the new sales totals
+  renderTableFooter(); //reRender the footer for the table
 }
 
 //Event listener function to run after submit button is clicked
 function addLocations (event) {
-  console.log('It\'s WORKING!!!');
-
   event.preventDefault(); //Prevent the page from reloading after form submission
 
   var location = event.target.location.value; //Pull text from form in order to build object
@@ -80,30 +88,15 @@ function addLocations (event) {
   var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
   var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
 
-  var storeLocation = new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
 
   event.target.location.value = null; //Remove text from the form after submission
   event.target.min_customers.value = null; //Remove text from the form after submission
   event.target.max_customers.value = null; //Remove text from the form after submission
   event.target.avg_cookies.value = null; //Remove text from the form after submission
 
-  renderBusinesses(storeLocation);
+  renderBusinesses(); //reRun the renderBusinesses function
 }
-
-
-//Render the header, construct objects, run total sales calc, render table footer
-// function renderPage() {
-//   renderTableHeader();
-//
-//   for (var x = 0; x < businesses.length; x++) {
-//     businesses[x].calcCustomersPerHour();
-//     businesses[x].calcCookiesSoldPerHour();
-//     businesses[x].renderTableBody();
-//   }
-//
-//   totalSalesCalc();
-//   renderTableFooter();
-// }
 
 //Render the table header
 function renderTableHeader() {
@@ -143,21 +136,24 @@ function renderTableFooter() {
 
 //Calc the total sales
 function totalSalesCalc() {
-  for (var i = 0; i < hoursOpenPerDay.length; i++) {
-    var hourlyCookieSales = 0;
-    for (var z = 0; z < businesses.length; z++) {
-      hourlyCookieSales += businesses[z].cookiesSoldPerHour[i];
+  for (var i = 0; i < hoursOpenPerDay.length; i++) { //Loop through hours open
+    var hourlyCookieSales = 0; //Set the hourly cookie sales to zero for each hour of the day
+    for (var z = 0; z < businesses.length; z++) { //Loop through businesses at the current hour[i]
+      hourlyCookieSales += businesses[z].cookiesSoldPerHour[i]; //Add the current hourly cookie sales
     }
-    salesByHour.push(hourlyCookieSales);
+    salesByHour.push(hourlyCookieSales); //Push the total for the current hour[i] to the salesByHour array
   }
-  for (var y = 0; y < businesses.length; y++) {
-    totalAllLocationsSales += businesses[y].totalDailyCookiesSold;
+  for (var y = 0; y < businesses.length; y++) { //Loop through businesses
+    totalAllLocationsSales += businesses[y].totalDailyCookiesSold; //Add totalDailyCookiesSold for the current business[y] to the totalAllLocationsSales variable
   }
 }
+
+/************************
+Execute Actions
+************************/
 
 //Create Event Listener for clicks on submit button on newLocations form
 newLocations.addEventListener('submit', addLocations);
 
-//Execute page render action
-// renderPage();
+//Execute page render action - First pass. Does not account for any objects added via the form.
 renderBusinesses();
