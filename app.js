@@ -45,13 +45,6 @@ function Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer,
     trEl.appendChild(tdEl); //Add daily cookies total sold to business location row
     tableDataDisplay.appendChild(trEl); //Add row for each business location to reporting table
   };
-  //Method to run all calc method in object
-  this.calculate = function () {
-    this.calcCustomersPerHour();
-    this.calcCookiesSoldPerHour();
-  };
-  //Run the calculate method which runs all calc methods in the object
-  this.calculate();
   //Build businesses array containing constructed objects
   businesses.push(this);
 }
@@ -67,6 +60,8 @@ function renderPage() {
   new Stores(2, 16, 4.6, 'Alki Beach');
 
   for (var x = 0; x < businesses.length; x++) {
+    businesses[x].calcCustomersPerHour();
+    businesses[x].calcCookiesSoldPerHour();
     businesses[x].renderTableBody();
   }
 
