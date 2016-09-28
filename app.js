@@ -14,6 +14,12 @@ newLocations.addEventListener('submit', addLocations);
 function addLocations (event) {
   console.log('It\'s WORKING!!!');
   event.preventDefault();
+  var location = event.target.location.value;
+  var minCustomersPerHour = event.target.min_customers.value;
+  var maxCustomersPerHour = event.target.max_customers.value;
+  var avgCookiesPerCustomer = event.target.avg_cookies.value;
+
+  var storeLocation = new Stores (minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location);
 }
 //Constructor Function
 function Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location) {
