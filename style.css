@@ -35,3 +35,11 @@ ul {
 li:last-of-type {
   border-top: 1px solid black;
 }
+
+table, table * {
+  border: 1px solid black;
+  text-align: right;
+}
+table tr td:first-child {
+  text-align: left;
+}
