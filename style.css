@@ -38,4 +38,8 @@ li:last-of-type {
 
 table, table * {
   border: 1px solid black;
+  text-align: right;
+}
+table tr td:first-child {
+  text-align: left;
 }
