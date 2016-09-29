@@ -24,6 +24,7 @@ var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCus
   this.totalDailyCookiesSold = 0; //Set total daily cookies to zero
   this.calcCustomersPerHour(); //Run the method to calculate the customers per hour for the object
   this.calcCookiesSoldPerHour(); //Run the method to calculate the cookies sold per hour for the object
+  this.validateMinMax();
   businesses.push(this); //Push newly constructed object to Businesses array
 };
 //Method to generate random number of customers per hour based on min/max customers
@@ -54,6 +55,13 @@ Stores.prototype.renderTableBody = function () {
   tdEl.textContent = this.totalDailyCookiesSold; //Create a column for the daily total cookies sold
   trEl.appendChild(tdEl); //Add daily cookies total sold to business location row
   tableDataDisplay.appendChild(trEl); //Add row for each business location to reporting table
+};
+
+//Method to validate that Max Customers Added is greater than or equal to Min.
+Stores.prototype.validateMinMax = function () {
+  if (this.maxCustomersPerHour < this.minCustomersPerHour) {
+    return alert('Broken');
+  }
 };
 
 //Construct new objects for each Business
@@ -89,7 +97,11 @@ function addLocations (event) {
   var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
   var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
 
-  new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  if (maxCustomersPerHour < minCustomersPerHour) {
+    alert('Maximum customers per hour must be greater than or equal to minimum customers per hour');
+  } else {
+    new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  }
 
   event.target.location.value = null; //Remove text from the form after submission
   event.target.min_customers.value = null; //Remove text from the form after submission
