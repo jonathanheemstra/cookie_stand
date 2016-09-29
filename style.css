@@ -48,15 +48,22 @@ td:last-child, th:last-child {
   border-right: none;
 }
 th {
-  border-right: 1px solid black;
+  transform: rotate(310deg);
+  font-size: 14px;
+}
+th:last-child {
+  transform: rotate(0deg);
 }
 table, table * {
   text-align: right;
   padding: 5px;
   max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 table tr td:first-child {
   text-align: left;
+  width: 100px;
 }
 main {
   width: 100%;
