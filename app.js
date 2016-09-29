@@ -18,6 +18,7 @@ var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCus
   this.maxCustomersPerHour = maxCustomersPerHour;
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   this.location = location;
+  this.lowerLocation = location.toLowerCase();
   this.customersPerHour = [];
   this.cookiesSoldPerHour = [];
   this.totalDailyCookiesSold = 0; //Set total daily cookies to zero
@@ -72,7 +73,7 @@ function renderBusinesses() {
   salesByHour = []; //Clear the salesByHour array
   totalAllLocationsSales = 0; //Clear the total sales across all locations
   renderTableHeader(); //reRender the header for the table
-  for (var i = 0; i < businesses.length; i++) { //Loop through the businesses array to render the table
+  for (var i = 0; i < businesses.length; i++) { //Loop through the businesses array to reRender the table
     businesses[i].renderTableBody(); //reRender the table body for the current business[i]
   }
   totalSalesCalc(); //Calculate the new sales totals
