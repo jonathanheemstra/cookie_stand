@@ -35,9 +35,22 @@ ul {
 li:last-of-type {
   border-top: 1px solid black;
 }
-
+table {
+  table-layout: fixed;
+  display: inline-table;
+  width: 100%;
+}
+td {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+td:last-child, th:last-child {
+  border-right: none;
+}
+th {
+  border-right: 1px solid black;
+}
 table, table * {
-  border: 1px solid black;
   text-align: right;
   padding: 5px;
   max-width: 100%;
@@ -63,6 +76,12 @@ fieldset {
 legend {
   font-size: 25px;
 }
+tr:hover {
+  color: #D97652;
+}
+tfoot {
+  background-color: #EBEBF2
+}
 button {
     border: 1px;
     text-align: center;
@@ -74,21 +93,21 @@ button {
 }
 .button {
     border-radius: 5px;
-    background-color: #2C3E50;
+    background-color: #F29057;
     color: white;
-    border-bottom: 5px solid #19242E;
-    border-right: 3px solid #19242E;
+    border-bottom: 5px solid #BF7245;
+    border-right: 3px solid #BF7245;
 }
 .button:hover {
-    background: #486582;
-    border-bottom: 3px solid #384F66;
-    border-right: 2px solid #384F66;
+    background: #BF7245;
+    border-bottom: 3px solid #995B37;
+    border-right: 2px solid #995B37;
     margin-top: 2px;
     margin-right: 21px;
 }
 
 .button:active {
-    background: #486582;
+    background: #BF7245;
     border-bottom: 0px;
     border-right: 0px;
     margin-top: 5px;
