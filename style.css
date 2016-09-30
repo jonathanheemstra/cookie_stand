@@ -221,6 +221,8 @@ article {
 }
 #about article {
   text-align: center;
+  width: 70%;
+  margin: 0 auto;
 }
 #about article:first-of-type {
   margin-top: 0;
