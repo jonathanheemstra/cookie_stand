@@ -76,6 +76,7 @@ main {
 }
 section {
   margin: 3% 0%;
+  clear: both;
 }
 form div {
   width: auto;
@@ -214,6 +215,19 @@ article {
 }
 #about article:first-of-type {
   margin-top: 0;
+}
+#locations ul {
+  padding: 0;
+}
+.locations_info li {
+  float: left;
+  border: none;
+  clear: both;
+}
+.locations_info ul {
+  float: right;
+  width: 50%;
+  clear: right;
 }
 #merch div {
   float: right;
