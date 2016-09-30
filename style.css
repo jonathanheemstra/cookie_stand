@@ -8,22 +8,25 @@ body {
   max-width: 90%;
   margin: 0 auto;
 }
-
+a {
+  text-decoration: none;
+}
 /******
 
 ******/
 div {
-  float: left;
-  width: 26%;
   margin: 2%;
   padding: 1%;
   border: 2px solid black;
+  width: 27%;
+  display: inline-block;
 }
 div h2 {
   text-align: center;
 }
 header {
   text-align: center;
+  position: relative;
 }
 h1 {
   font-size: 50px;
@@ -74,15 +77,12 @@ table tr td:first-child {
 main {
   width: 100%;
 }
-section {
-  margin: 3% 0%;
-  clear: both;
-}
 form div {
   width: auto;
   border: none;
   margin: 0;
   padding: 2%;
+  display: inline-block;
 }
 fieldset {
   margin: 0;
@@ -105,7 +105,7 @@ button {
     border: 1px;
     text-align: center;
     margin-right: 20px;
-    float: left;
+    /*float: left;*/
     font-weight: bold;
     width: 150px;
     font-size: 25px;
@@ -155,30 +155,33 @@ Homepage Styles
 ******/
 .logo {
   width: 20%;
-  float: left;
+  vertical-align: middle;
 }
 nav {
-  height: 72px;
   margin: 2% 0%;
+  background-color: #EBEBF2;
+  border: none;
+  margin: 0%;
+  text-align: left;
+  padding: 3% 1%;
 }
 nav h1 {
   font-size: 30px;
-  float: left;
-  margin: 0 4%;
-  padding: 15px 0px;
+  display: inline;
+  padding-left: 5%;
+  vertical-align: middle;
 }
 nav ul {
-  height: inherit;
-  margin: 0;
-  width: 49%;
-  float: right;
+  position: relative;
+  vertical-align: middle;
+  display: inline;
 }
 nav ul li {
   display: inline;
-  float: right;
-  margin: 0 5%;
+  padding: 0 3%;
   border: none;
-  padding: 25px 0;
+  position: relative;
+  border-right: 1px solid black;
 }
 nav ul li:last-of-type {
   border: none;
@@ -189,23 +192,26 @@ main {
 main h2 {
   text-align: center;
   font-size: 50px;
-  border-top: 1px solid black;
+  margin: 0;
+  padding: 5%;
 }
 article {
   clear: both;
-  margin: 10% 0;
+  margin: 5% 0;
 }
 .salmon_amazing div, .our_product div {
-  float: right;
   width: 50%;
   border: none;
   margin: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 .our_mission div {
-  float: left;
   width: 50%;
   border: none;
   margin: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 #about img {
   width: 45%;
@@ -213,26 +219,45 @@ article {
 #about article:last-of-type img {
   width: auto;
 }
+#about article {
+  text-align: center;
+}
 #about article:first-of-type {
   margin-top: 0;
 }
+#locations {
+  background-color: #4F5059;
+}
 #locations ul {
   padding: 0;
+  display: inline-block;
+  width: 100%;
 }
 .locations_info li {
   float: left;
   border: none;
   clear: both;
+  font-size: 14px;
 }
-.locations_info ul {
+#locations .locations_info ul {
   float: right;
-  width: 50%;
+  width: 60%;
   clear: right;
+  margin-bottom: 8%;
+}
+#locations div {
+  background-color: white;
+  border: none;
+  text-align: center;
 }
 #merch div {
-  float: right;
+  /*float: right;*/
   width: 50%;
   border: none;
+  margin: 0;
+  vertical-align: top;
+}
+#merch h3 {
   margin: 0;
 }
 footer {
