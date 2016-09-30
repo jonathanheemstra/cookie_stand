@@ -273,7 +273,11 @@ article {
 footer {
   background-color: #EBEBF2;
   height: 200px;
+  text-align: center;
 }
 footer .logo {
+  padding-top: 4%;
+}
+footer nav {
   text-align: center;
 }
