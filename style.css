@@ -1,3 +1,6 @@
+/******
+Generic Styles for all pages
+******/
 * {
   font-family: 'Walter Turncoat', 'Arial', 'Georgia', serif, sans-serif;;
 }
@@ -5,18 +8,25 @@ body {
   max-width: 90%;
   margin: 0 auto;
 }
+a {
+  text-decoration: none;
+}
+/******
+
+******/
 div {
-  float: left;
-  width: 26%;
   margin: 2%;
   padding: 1%;
   border: 2px solid black;
+  width: 27%;
+  display: inline-block;
 }
 div h2 {
   text-align: center;
 }
 header {
   text-align: center;
+  position: relative;
 }
 h1 {
   font-size: 50px;
@@ -67,14 +77,12 @@ table tr td:first-child {
 main {
   width: 100%;
 }
-section {
-  margin: 3% 0%;
-}
 form div {
   width: auto;
   border: none;
   margin: 0;
   padding: 2%;
+  display: inline-block;
 }
 fieldset {
   margin: 0;
@@ -97,7 +105,7 @@ button {
     border: 1px;
     text-align: center;
     margin-right: 20px;
-    float: left;
+    /*float: left;*/
     font-weight: bold;
     width: 150px;
     font-size: 25px;
@@ -141,4 +149,135 @@ button {
   border-bottom: 0px;
   border-right: 0px;
   margin-top: 5px;
+}
+/******
+Homepage Styles
+******/
+.logo {
+  width: 20%;
+  vertical-align: middle;
+}
+nav {
+  margin: 2% 0%;
+  background-color: #EBEBF2;
+  border: none;
+  margin: 0%;
+  text-align: left;
+  padding: 3% 1%;
+}
+nav h1 {
+  font-size: 30px;
+  display: inline;
+  padding-left: 5%;
+  vertical-align: middle;
+}
+nav ul {
+  position: relative;
+  vertical-align: middle;
+  display: inline;
+}
+nav ul li {
+  display: inline;
+  padding: 0 3%;
+  border: none;
+  position: relative;
+  border-right: 1px solid black;
+}
+nav ul li:last-of-type {
+  border: none;
+}
+main {
+  clear: both;
+}
+main h2 {
+  text-align: center;
+  font-size: 50px;
+  margin: 0;
+  padding: 5%;
+}
+article {
+  clear: both;
+  margin: 5% 0;
+}
+.salmon_amazing div, .our_product div {
+  width: 50%;
+  border: none;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.our_mission div {
+  width: 50%;
+  border: none;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+#about img {
+  width: 45%;
+}
+#about article:last-of-type img {
+  width: auto;
+}
+#about article {
+  text-align: center;
+}
+#about article:first-of-type {
+  margin-top: 0;
+}
+#locations {
+  background-color: #4F5059;
+}
+#locations ul {
+  padding: 0;
+  display: inline-block;
+  width: 100%;
+}
+.locations_info li {
+  float: left;
+  border: none;
+  clear: both;
+  font-size: 14px;
+}
+#locations .locations_info ul {
+  float: right;
+  width: 60%;
+  clear: right;
+  margin-bottom: 8%;
+}
+#locations div {
+  background-color: white;
+  border: none;
+  text-align: center;
+}
+#merch div {
+  width: 60%;
+  border: none;
+  margin: 0;
+  vertical-align: top;
+}
+#merch .cart .button {
+  width: 60%;
+  text-align: center;
+}
+#merch h3 {
+  margin: 0;
+}
+#merch img {
+  width: 15%;
+}
+#merch .cart {
+  width: 20%;
+  text-align: center;
+}
+footer {
+  background-color: #EBEBF2;
+  height: 200px;
+  text-align: center;
+}
+footer .logo {
+  padding-top: 4%;
+}
+footer nav {
+  text-align: center;
 }

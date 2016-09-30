@@ -89,7 +89,11 @@ function addLocations (event) {
   var maxCustomersPerHour = parseInt(event.target.max_customers.value); //Pull text from form in order to build object
   var avgCookiesPerCustomer = parseFloat(event.target.avg_cookies.value); //Pull text from form in order to build object
 
-  new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  if (maxCustomersPerHour < minCustomersPerHour) {
+    alert('Maximum customers per hour must be greater than or equal to minimum customers per hour');
+  } else {
+    new Stores(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer, location); //Create a new Stores object from submitted Data
+  }
 
   event.target.location.value = null; //Remove text from the form after submission
   event.target.min_customers.value = null; //Remove text from the form after submission
