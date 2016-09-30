@@ -251,14 +251,24 @@ article {
   text-align: center;
 }
 #merch div {
-  /*float: right;*/
-  width: 50%;
+  width: 60%;
   border: none;
   margin: 0;
   vertical-align: top;
 }
+#merch .cart .button {
+  width: 60%;
+  text-align: center;
+}
 #merch h3 {
   margin: 0;
+}
+#merch img {
+  width: 15%;
+}
+#merch .cart {
+  width: 20%;
+  text-align: center;
 }
 footer {
   background-color: #EBEBF2;
