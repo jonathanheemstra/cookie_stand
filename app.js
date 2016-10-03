@@ -21,6 +21,7 @@ var Stores = function(minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCus
   this.lowerLocation = location.toLowerCase();
   this.customersPerHour = [];
   this.cookiesSoldPerHour = [];
+  this.staffNeeds = [];
   this.totalDailyCookiesSold = 0; //Set total daily cookies to zero
   this.calcCustomersPerHour(); //Run the method to calculate the customers per hour for the object
   this.calcCookiesSoldPerHour(); //Run the method to calculate the cookies sold per hour for the object
